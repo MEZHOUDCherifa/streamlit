@@ -158,6 +158,8 @@ export interface StyledFlexContainerBlockProps {
   height?: React.CSSProperties["height"]
   border: boolean
   overflow?: React.CSSProperties["overflow"]
+  border: boolean
+  height?: React.CSSProperties["height"]
 }
 
 export const StyledFlexContainerBlock =
@@ -173,7 +175,7 @@ export const StyledFlexContainerBlock =
         gap: gapWidth,
         width: "100%",
         maxWidth: "100%",
-        height: height ?? "auto",
+        height: height,
         flexDirection: direction,
         flex,
         flexWrap: wrap ? "wrap" : "nowrap",
@@ -183,6 +185,11 @@ export const StyledFlexContainerBlock =
           padding: `calc(${theme.spacing.lg} - ${theme.sizes.borderWidth})`,
         }),
         overflow,
+        ...(border && {
+          border: `${theme.sizes.borderWidth} solid ${theme.colors.borderColor}`,
+          borderRadius: theme.radii.default,
+          padding: `calc(${theme.spacing.lg} - ${theme.sizes.borderWidth})`,
+        }),
       }
     }
   )
