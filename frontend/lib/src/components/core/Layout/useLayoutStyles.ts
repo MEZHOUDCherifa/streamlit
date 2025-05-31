@@ -157,7 +157,7 @@ export const useLayoutStyles = ({
       return {
         width: "auto",
         height: "auto",
-        overflow: "visible",
+        overflowY: "visible",
       }
     }
     let flex: React.CSSProperties["flex"] = undefined
