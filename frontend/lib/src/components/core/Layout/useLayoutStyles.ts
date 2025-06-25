@@ -17,6 +17,7 @@
 import { useMemo } from "react"
 
 import { Block as BlockProto, Element, streamlit } from "@streamlit/protobuf"
+import { Direction } from "./utils"
 
 type SubElement = {
   useContainerWidth?: boolean | null
@@ -135,6 +136,18 @@ const getHeight = (
   return { pixels, type }
 }
 
+const getFlex = (
+  height: LayoutDimensionConfig
+): React.CSSProperties["flex"] => {
+  // TODO(lawilby): When direction is implemented for containers,
+  // this will be updated to support horizontal direction as well.
+  // Currently, the assumption is that the container is vertical.
+  if (height.type === DimensionType.PIXEL) {
+    return `1 0 ${height.pixels}px`
+  }
+  return undefined
+}
+
 export type UseLayoutStylesShape = {
   width: React.CSSProperties["width"]
   height: React.CSSProperties["height"]
@@ -159,7 +172,6 @@ export const useLayoutStyles = ({
         overflow: "visible",
       }
     }
-    let flex: React.CSSProperties["flex"] = undefined
 
     // The st.image element is potentially a list of images, so we always want
     // the enclosing container to be full width. The size of individual
@@ -206,10 +218,9 @@ export const useLayoutStyles = ({
     } else if (heightType === DimensionType.PIXEL) {
       height = commandHeight
       overflow = skipOverflow ? "visible" : "auto"
-      // TODO (lawilby): We only have vertical containers currently, but this will be
-      // modified to handle horizontal containers when direction on containers is implemented.
-      flex = `0 0 ${commandHeight}px`
     }
+
+    const flex = getFlex({ pixels: commandHeight, type: heightType })
 
     return {
       width,
