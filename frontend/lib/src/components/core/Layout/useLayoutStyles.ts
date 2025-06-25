@@ -140,7 +140,6 @@ export type UseLayoutStylesShape = {
   height: React.CSSProperties["height"]
   overflow: React.CSSProperties["overflow"]
   flex?: React.CSSProperties["flex"]
-  alignSelf: React.CSSProperties["alignSelf"]
 }
 
 /**
@@ -217,7 +216,6 @@ export const useLayoutStyles = ({
       height,
       overflow,
       flex,
-      alignSelf,
     }
   }, [element, subElement])
 
