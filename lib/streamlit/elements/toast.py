@@ -16,7 +16,6 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING, cast
 
-from streamlit.delta_generator_singletons import get_dg_singleton_instance
 from streamlit.errors import StreamlitAPIException
 from streamlit.proto.Toast_pb2 import Toast as ToastProto
 from streamlit.runtime.metrics_util import gather_metrics
@@ -90,10 +89,7 @@ class ToastMixin:
         toast_proto = ToastProto()
         toast_proto.body = clean_text(validate_text(body))
         toast_proto.icon = validate_icon_or_emoji(icon)
-        # Always use the main DeltaGenerator to ensure toasts don't interfere
-        # with nested containers like dialogs
-        main_dg = get_dg_singleton_instance().main_dg
-        return main_dg._enqueue("toast", toast_proto)
+        return self.dg._enqueue("toast", toast_proto)
 
     @property
     def dg(self) -> DeltaGenerator:
