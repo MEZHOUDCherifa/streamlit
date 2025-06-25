@@ -17,7 +17,6 @@
 import { useMemo } from "react"
 
 import { Block as BlockProto, Element, streamlit } from "@streamlit/protobuf"
-import { Direction } from "./utils"
 
 type SubElement = {
   useContainerWidth?: boolean | null
@@ -143,7 +142,7 @@ const getFlex = (
   // this will be updated to support horizontal direction as well.
   // Currently, the assumption is that the container is vertical.
   if (height.type === DimensionType.PIXEL) {
-    return `1 0 ${height.pixels}px`
+    return `0 0 ${height.pixels}px`
   }
   return undefined
 }
