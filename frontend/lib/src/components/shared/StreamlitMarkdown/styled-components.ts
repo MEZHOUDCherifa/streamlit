@@ -69,8 +69,6 @@ function getMarkdownHeadingDefinitions(
   return {
     "h1, h2, h3, h4, h5, h6": {
       fontFamily: theme.genericFonts.headingFont,
-      // Bold used for headers separate
-      fontWeight: theme.fontWeights.headerBold,
       lineHeight: theme.lineHeights.headings,
       margin: 0,
       color: "inherit",
@@ -100,6 +98,7 @@ function getMarkdownHeadingDefinitions(
         useSmallerHeadings,
         isCaption
       ),
+      fontWeight: theme.fontWeights.h2FontWeight,
       padding: `${theme.spacing.lg} 0 ${theme.spacing.lg} 0`,
     },
     h3: {
@@ -109,6 +108,7 @@ function getMarkdownHeadingDefinitions(
         useSmallerHeadings,
         isCaption
       ),
+      fontWeight: theme.fontWeights.h3FontWeight,
       padding: `${theme.spacing.md} 0 ${theme.spacing.lg} 0`,
     },
     h4: {
@@ -118,6 +118,7 @@ function getMarkdownHeadingDefinitions(
         useSmallerHeadings,
         isCaption
       ),
+      fontWeight: theme.fontWeights.h4FontWeight,
       padding: `${theme.spacing.sm} 0 ${theme.spacing.lg} 0`,
     },
     h5: {
@@ -127,6 +128,7 @@ function getMarkdownHeadingDefinitions(
         useSmallerHeadings,
         isCaption
       ),
+      fontWeight: theme.fontWeights.h5FontWeight,
       padding: `${theme.spacing.xs} 0 ${theme.spacing.lg} 0`,
     },
     h6: {
@@ -136,6 +138,7 @@ function getMarkdownHeadingDefinitions(
         useSmallerHeadings,
         isCaption
       ),
+      fontWeight: theme.fontWeights.h6FontWeight,
       padding: `${theme.spacing.twoXS} 0 ${theme.spacing.lg} 0`,
     },
   }
